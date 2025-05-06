@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "react": "^19.1.0"
+  },
+  "name": "mission-17b",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
