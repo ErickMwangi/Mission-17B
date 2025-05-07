@@ -1,15 +1,18 @@
-
 import './App.css';
+import Header from './components/Header';
+import Hero from './components/Hero';
+import Content from './components/Content';
+import ThankYou from './components/ThankYou';
+import Footer from './components/Footer';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          17B.WORLD
-        </p>
-          Mission 17B
-      </header>
+      <Header />
+      <Hero />
+      <Content />
+      <ThankYou />
+      <Footer />
     </div>
   );
 }
