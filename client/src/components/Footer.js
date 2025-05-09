@@ -8,7 +8,7 @@ const Footer = () => (
     </p>
     <div className="buttons">
       <button>REFUSE</button>
-      <button>TO ACCEPT</button>
+      <button>ACCEPT</button>
     </div>
   </footer>
 );
