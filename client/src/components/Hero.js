@@ -1,4 +1,3 @@
-// Hero.js
 import React from 'react';
 import glassmorphism from '/home/maverick/Development/Projects/Mission-17B/client/src/images/coming soon.jpeg'; 
 
