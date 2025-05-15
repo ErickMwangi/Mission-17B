@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from models import Base, User  # Ensure models.py is in the same folder or adjust the import path
+from models import Base, User  
 
 app = Flask(__name__)
 CORS(app)
@@ -12,10 +12,8 @@ DATABASE_URL = 'sqlite:///app.db'
 engine = create_engine(DATABASE_URL, echo=True)
 SessionLocal = sessionmaker(bind=engine)
 
-# Create database tables if they don't exist
 Base.metadata.create_all(engine)
 
-# Static content for frontend
 content_data = {
     "hero": "Welcome to Mission 17B",
     "hero_desc": "Stay tuned for something amazing!",
@@ -49,7 +47,10 @@ def get_thank_you():
 
 @app.route('/api/contact', methods=['POST'])
 def contact():
-    data = request.json
+    if request.is_json:
+        data = request.get_json()
+    else:
+        data = request.form.to_dict()
     print("Received contact data:", data)
     return jsonify({"status": "success", "message": "Contact data received"}), 200
 
@@ -73,7 +74,7 @@ def create_user():
     finally:
         session.close()
 
-# List all users
+
 @app.route('/api/users', methods=['GET'])
 def list_users():
     session = SessionLocal()
