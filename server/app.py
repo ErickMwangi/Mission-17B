@@ -1,18 +1,18 @@
 from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from models import Base, User  
+from flask_migrate import Migrate
+from flask_sqlalchemy import SQLAlchemy
+from models import User 
 
 app = Flask(__name__)
 CORS(app)
 
-# Database setup
-DATABASE_URL = 'sqlite:///app.db'
-engine = create_engine(DATABASE_URL, echo=True)
-SessionLocal = sessionmaker(bind=engine)
+# Set database URI for Flask-SQLAlchemy
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-Base.metadata.create_all(engine)
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 content_data = {
     "hero": "Welcome to Mission 17B",
@@ -58,28 +58,23 @@ def contact():
 @app.route('/api/users', methods=['POST'])
 def create_user():
     data = request.json
-    session = SessionLocal()
     try:
         new_user = User(
             username=data['username'],
             email=data['email'],
             password=data['password']
         )
-        session.add(new_user)
-        session.commit()
+        db.session.add(new_user)
+        db.session.commit()
         return jsonify({"status": "success", "user_id": new_user.id}), 201
     except Exception as e:
-        session.rollback()
+        db.session.rollback()
         return jsonify({"status": "error", "message": str(e)}), 400
-    finally:
-        session.close()
 
-
+# List all users
 @app.route('/api/users', methods=['GET'])
 def list_users():
-    session = SessionLocal()
-    users = session.query(User).all()
-    session.close()
+    users = User.query.all()
     return jsonify([
         {"id": user.id, "username": user.username, "email": user.email}
         for user in users
