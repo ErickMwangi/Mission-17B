@@ -1,3 +1,4 @@
+// src/components/Content.js
 import React from 'react';
 
 const Content = () => (
@@ -11,7 +12,8 @@ const Content = () => (
     <p>
       In the meantime, the door remains open. Talk to me. Yes, even before the new website.
     </p>
-    <a href="#">I want to create with intention!</a>
+    <a href="/contact">I want to create with intention!</a>
+
   </section>
 );
 

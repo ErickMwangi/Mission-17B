@@ -266,3 +266,54 @@
 .auth-container button:hover {
   background: #0056b3;
 }
+
+
+.signup-form {
+  max-width: 400px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #f5f7fa;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+}
+
+.signup-form h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.signup-form__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-form__input {
+  padding: 0.8rem 1rem;
+  margin-bottom: 1.2rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.signup-form__input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.signup-form__button {
+  padding: 0.9rem 0;
+  background-color: #007bff;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.signup-form__button:hover {
+  background-color: #0056b3;
+}
